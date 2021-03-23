@@ -1,0 +1,2 @@
+Why is there a board and an HTML board?
+How would I clear the board and start a new game?
