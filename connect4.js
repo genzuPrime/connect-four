@@ -14,6 +14,13 @@ let board = []; // array of rows, each row is array of cells  (board[y][x])
 /** makeBoard: create in-JS board structure:
  *    board = array of rows, each row is array of cells  (board[y][x])
  */
+function reset() {
+     board = [];
+     currPlayer = 1;
+     document.querySelector('#board').innerHTML = '';
+     makeBoard();
+     makeHtmlBoard();
+}
 
 function makeBoard() {
      // TODO: set "board" to empty HEIGHT x WIDTH matrix array
@@ -56,8 +63,8 @@ function makeHtmlBoard() {
 
 function findSpotForCol(x) {
      // TODO: write the real version of this, rather than always returning 0
-     for (let i = HEIGHT; i >= 0; i--) {
-          if () {
+     for (let y = HEIGHT; y >= 0; y--) {
+          if (!board[y][x]) {
                return y;
           }
      }
@@ -94,7 +101,7 @@ function handleClick(evt) {
      if (y === null) {
           return;
      }
-
+     board[y][x];
      // place piece in board and add to HTML table
      // TODO: add line to update in-memory board
      placeInTable(y, x);
@@ -112,8 +119,8 @@ function handleClick(evt) {
      //      })
      // }) {return endGame('Tie Game!')}
 
-     if (board.every(row => row.every(cell => cell))) {
-          return endGame('Tie Game!')
+     if (board.every((row) => row.every((cell) => cell))) {
+          return endGame('Tie Game!');
      }
 
      // switch players
@@ -121,7 +128,9 @@ function handleClick(evt) {
 
      if (currPlayer === 1) {
           currPlayer = 2;
-     } else {currPlayer = 1};
+     } else {
+          currPlayer = 1;
+     }
 }
 
 /** checkForWin: check board cell-by-cell for "does a win start here?" */
