@@ -14,17 +14,17 @@ let board = []; // array of rows, each row is array of cells  (board[y][x])
 /** makeBoard: create in-JS board structure:
  *    board = array of rows, each row is array of cells  (board[y][x])
  */
-function reset() {
-     board = [];
-     currPlayer = 1;
-     document.querySelector('#board').innerHTML = '';
-     makeBoard();
-     makeHtmlBoard();
-}
+// function reset() {
+//      board = [];
+//      currPlayer = 1;
+//      document.querySelector('#board').innerHTML = '';
+//      makeBoard();
+//      makeHtmlBoard();
+// }
 
 function makeBoard() {
      // TODO: set "board" to empty HEIGHT x WIDTH matrix array
-     for (y of HEIGHT) {
+     for (let y = 0; y < HEIGHT; y++) {
           board.push(Array.from({ length: WIDTH }));
      }
 }
@@ -63,7 +63,7 @@ function makeHtmlBoard() {
 
 function findSpotForCol(x) {
      // TODO: write the real version of this, rather than always returning 0
-     for (let y = HEIGHT; y >= 0; y--) {
+     for (let y = HEIGHT - 1; y >= 0; y--) {
           if (!board[y][x]) {
                return y;
           }
@@ -80,7 +80,7 @@ function placeInTable(y, x) {
      newPiece.classList.add('piayer${currPlayer}');
      newPiece.style.top = -50 * (y + 2);
 
-     document.querySelector(`#${y}-${x}`).append(newPiece);
+     document.getElementById(`${y}-${x}`).append(newPiece);
 }
 
 /** endGame: announce game end */
@@ -98,12 +98,14 @@ function handleClick(evt) {
 
      // get next spot in column (if none, ignore click)
      const y = findSpotForCol(x);
+
      if (y === null) {
           return;
      }
-     board[y][x];
+
      // place piece in board and add to HTML table
      // TODO: add line to update in-memory board
+     board[y][x] = currPlayer;
      placeInTable(y, x);
 
      // check for win
@@ -126,11 +128,12 @@ function handleClick(evt) {
      // switch players
      // TODO: switch currPlayer 1 <-> 2
 
-     if (currPlayer === 1) {
-          currPlayer = 2;
-     } else {
-          currPlayer = 1;
-     }
+     // if (currPlayer === 1) {
+     //      currPlayer = 2;
+     // } else {
+     //      currPlayer = 1;
+     // }
+     currPlayer = currPlayer === 1 ? 2 : 1;
 }
 
 /** checkForWin: check board cell-by-cell for "does a win start here?" */
@@ -152,6 +155,7 @@ function checkForWin() {
      }
 
      // TODO: read and understand this code. Add comments to help you.
+     // Checks for horizontal, vertical, diagonal down right, and diagonal down-left connect 4s
 
      for (let y = 0; y < HEIGHT; y++) {
           for (let x = 0; x < WIDTH; x++) {

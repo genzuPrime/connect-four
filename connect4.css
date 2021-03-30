@@ -18,11 +18,11 @@
 
 /* TODO: make pieces red/blue,  depending on player 1/2 piece */
 
-.player1 {
+.piece.player1 {
      background-color: hsl(300, 100%, 50%);
 }
 
-.player2 {
+.piece.player2 {
      background-color: hsl(60, 100%, 50%);
 }
 
