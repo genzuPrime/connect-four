@@ -77,7 +77,7 @@ function placeInTable(y, x) {
      // TODO: make a div and insert into correct table cell
      const newPiece = document.createElement('div');
      newPiece.classList.add('piece');
-     newPiece.classList.add('piayer${currPlayer}');
+     newPiece.classList.add(`piayer${currPlayer}`);
      newPiece.style.top = -50 * (y + 2);
 
      document.getElementById(`${y}-${x}`).append(newPiece);
